@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://localhost:8080/DataSync/DataSyncService?wsdl" uri="xml-resources/web-service-references/DataSyncService/wsdl/localhost_8080/DataSync/DataSyncService.wsdl"/>
+    <system systemId="http://localhost:8080/DataSync/DataSyncService?wsdl=1" uri="xml-resources/web-service-references/DataSyncService/wsdl/localhost_8080/DataSync/DataSyncService.wsdl_1.wsdl"/>
+    <system systemId="http://localhost:8080/DataSync/DataSyncService?xsd=1" uri="xml-resources/web-service-references/DataSyncService/wsdl/localhost_8080/DataSync/DataSyncService.xsd_1.xsd"/>
+</catalog>

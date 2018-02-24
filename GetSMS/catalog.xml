@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/D:/MTN_Documentation/GSDP.Technical%20Document/DataSync-SOAP/Data%20Sync/sag_data_sync_service_1_0.wsdl" uri="src/conf/xml-resources/web-services/NewWebServiceFromWSDL_1/wsdl/sag_data_sync_service_1_0.wsdl"/>
+    <system systemId="file:/D:/MTN_Documentation/GSDP.Technical%20Document/DataSync-SOAP/Data%20Sync/sag_data_sync_interface_1_0.wsdl" uri="src/conf/xml-resources/web-services/NewWebServiceFromWSDL_1/wsdl/sag_data_sync_interface_1_0.wsdl"/>
+    <system systemId="file:/D:/MTN_Documentation/GSDP.Technical%20Document/DataSync-SOAP/Data%20Sync/sag_data_sync_types_1_0.xsd" uri="src/conf/xml-resources/web-services/NewWebServiceFromWSDL_1/wsdl/sag_data_sync_types_1_0.xsd"/>
+    <system systemId="file:/D:/MTN_Documentation/GSDP.Technical%20Document/SMS-ParlayX%202.1/(Part4%20SMS)/parlayx_sms_notification_service_2_2.wsdl" uri="src/conf/xml-resources/web-services/NewWebServiceFromWSDL/wsdl/parlayx_sms_notification_service_2_2.wsdl"/>
+    <system systemId="file:/D:/MTN_Documentation/GSDP.Technical%20Document/SMS-ParlayX%202.1/(Part4%20SMS)/parlayx_sms_notification_interface_2_2.wsdl" uri="src/conf/xml-resources/web-services/NewWebServiceFromWSDL/wsdl/parlayx_sms_notification_interface_2_2.wsdl"/>
+    <system systemId="file:/D:/MTN_Documentation/GSDP.Technical%20Document/SMS-ParlayX%202.1/(Part4%20SMS)/parlayx_sms_types_2_2.xsd" uri="src/conf/xml-resources/web-services/NewWebServiceFromWSDL/wsdl/parlayx_sms_types_2_2.xsd"/>
+    <system systemId="file:/D:/MTN_Documentation/GSDP.Technical%20Document/SMS-ParlayX%202.1/(Part4%20SMS)/parlayx_common_types_2_1.xsd" uri="src/conf/xml-resources/web-services/NewWebServiceFromWSDL/wsdl/parlayx_common_types_2_1.xsd"/>
+</catalog>

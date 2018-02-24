@@ -1,0 +1,7 @@
+com/fidar/forms/LoginForm.class
+com/fidar/forms/object/RevenueObj.class
+com/fidar/forms/PageManage.class
+com/fidar/forms/object/ServiceUserObj.class
+com/fidar/forms/object/ServiceUserReportObj.class
+com/fidar/database/DBHandler.class
+com/fidar/forms/GenerateRevenueReport.class

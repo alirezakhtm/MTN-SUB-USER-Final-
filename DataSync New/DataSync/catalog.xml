@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/D:/MTN_Documentation/GSDP.Technical%20Document/DataSync-SOAP/Data%20Sync/sag_data_sync_service_1_0.wsdl" uri="src/conf/xml-resources/web-services/NewWebServiceFromWSDL/wsdl/sag_data_sync_service_1_0.wsdl"/>
+    <system systemId="file:/D:/MTN_Documentation/GSDP.Technical%20Document/DataSync-SOAP/Data%20Sync/sag_data_sync_interface_1_0.wsdl" uri="src/conf/xml-resources/web-services/NewWebServiceFromWSDL/wsdl/sag_data_sync_interface_1_0.wsdl"/>
+    <system systemId="file:/D:/MTN_Documentation/GSDP.Technical%20Document/DataSync-SOAP/Data%20Sync/sag_data_sync_types_1_0.xsd" uri="src/conf/xml-resources/web-services/NewWebServiceFromWSDL/wsdl/sag_data_sync_types_1_0.xsd"/>
+    <system systemId="http://localhost:8080/DigidarooWS/sendSMSWebService?wsdl" uri="src/conf/xml-resources/web-service-references/sendSMSWebService/wsdl/localhost_8080/DigidarooWS/sendSMSWebService.wsdl"/>
+    <system systemId="http://localhost:8080/DigidarooWS/sendSMSWebService?xsd=1" uri="src/conf/xml-resources/web-service-references/sendSMSWebService/wsdl/localhost_8080/DigidarooWS/sendSMSWebService.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/DigidarooWS/sendSMSWebService?xsd=2" uri="src/conf/xml-resources/web-service-references/sendSMSWebService/wsdl/localhost_8080/DigidarooWS/sendSMSWebService.xsd_2.xsd"/>
+</catalog>
