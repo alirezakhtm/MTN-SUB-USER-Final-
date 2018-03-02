@@ -17,7 +17,9 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "SendSmsService", targetNamespace = "http://www.csapi.org/wsdl/parlayx/sms/send/v2_2/service", wsdlLocation = "file:/D:/MTN_Documentation/GSDP.Technical%20Document/SMS-ParlayX%202.1/(Part4%20SMS)/parlayx_sms_send_service_2_2.wsdl")
+// file:/D:/MTN_Documentation/GSDP.Technical%20Document/SMS-ParlayX%202.1/(Part4%20SMS)/parlayx_sms_send_service_2_2.wsdl
+// file:///home/../parlayx_sms_send_service_2_2.wsdl
+@WebServiceClient(name = "SendSmsService", targetNamespace = "http://www.csapi.org/wsdl/parlayx/sms/send/v2_2/service", wsdlLocation = "file:///root/runnable-application/parlayx_sms_send_service_2_2.wsdl")
 public class SendSmsService
     extends Service
 {
@@ -30,7 +32,7 @@ public class SendSmsService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("file:/D:/MTN_Documentation/GSDP.Technical%20Document/SMS-ParlayX%202.1/(Part4%20SMS)/parlayx_sms_send_service_2_2.wsdl");
+            url = new URL("file:///root/runnable-application/parlayx_sms_send_service_2_2.wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

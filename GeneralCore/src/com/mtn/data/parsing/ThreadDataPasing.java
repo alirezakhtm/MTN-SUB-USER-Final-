@@ -47,7 +47,7 @@ public class ThreadDataPasing implements Runnable {
             if(so.getServiceID().equals(dataReceived.getServiceID())){
                 bFindServices = true;
                 ActiveMQConnectionFactory connectionFactory = 
-                        new ActiveMQConnectionFactory("admin", "admin", "tcp://localhost:61616");
+                        new ActiveMQConnectionFactory(db.getActiveMQUsername(), db.getActiveMQPassword(), "tcp://localhost:61616");
                 Connection connection = null;
                 try{
                     connection = connectionFactory.createConnection();
@@ -111,7 +111,7 @@ public class ThreadDataPasing implements Runnable {
         }
         if(!bFindServices){
             ActiveMQConnectionFactory connectionFactory = 
-                    new ActiveMQConnectionFactory("admin", "admin", "tcp://localhost:61616");
+                    new ActiveMQConnectionFactory(db.getActiveMQUsername(), db.getActiveMQPassword(), "tcp://localhost:61616");
             Connection connection = null;
             try{
                 connection = connectionFactory.createConnection();

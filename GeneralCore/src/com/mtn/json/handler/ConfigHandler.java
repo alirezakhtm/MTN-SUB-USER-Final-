@@ -31,6 +31,8 @@ public class ConfigHandler {
     public ConfigHandler() {
         try{
             File file = new File("config.json");
+            if(file.exists()) System.out.println("[*] config.json found.");
+            else System.out.println("[*] config.json not found.");
             BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
             String line = br.readLine();
             Gson gson = new GsonBuilder().create();

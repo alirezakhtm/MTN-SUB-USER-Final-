@@ -156,7 +156,7 @@ public class DBHandler {
                 lst.add(obj);
             }
         }catch(SQLException e){
-            System.err.println("DBHandler - getAllServices : " + e.getSQLState());
+            System.err.println("DBHandler - getAllServices : " + e);
         }
         return lst;
     }

@@ -36,8 +36,10 @@ public class ServerForDataSync {
             DatagramSocket socket = new DatagramSocket(9999, InetAddress.getByName("127.0.0.1"));
             while(true){
                 socket.receive(datagramPacket);
-                strJson = new String(datagramPacket.getData()).replace((char)((byte)0x00), '*');
-                strJson = strJson.replaceAll("*", "");
+                strJson = new String(datagramPacket.getData());//.replace((char)((byte)0x00), '*');
+                char ch = (char)((byte)0x00);
+                //strJson = strJson.replaceAll("*", "");
+                strJson = strJson.replaceAll(ch+"", "");
                 System.out.println(strJson);
                 Thread th = new Thread(new Runnable() {
                     @Override
@@ -82,13 +84,13 @@ public class ServerForDataSync {
             }
         }catch(Exception e){
             System.err.println("ServerForDataSync - main : " + e);
-            Thread thException = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    restartActiveMQService(strJson);
-                }
-            });
-            thException.start();
+//            Thread thException = new Thread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    restartActiveMQService(strJson);
+//                }
+//            });
+//            thException.start();
         }
     }
     

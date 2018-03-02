@@ -132,7 +132,7 @@ public class SMSHandler {
             ChargingInformation charging = null;
             SimpleReference receiptRequest =new SimpleReference();
             receiptRequest.setCorrelator(myService.getCorrelatorID());
-            receiptRequest.setEndpoint("http://10.130.158.140:8080/GetSMS/SmsNotificationService");
+            receiptRequest.setEndpoint("http://localhost/GetSMS/SmsNotificationService");//10.130.158.140:8080
             receiptRequest.setInterfaceName("notifySmsDeliveryReceipt");
             String encode = "";
             Integer sourceport = Integer.valueOf(0);
