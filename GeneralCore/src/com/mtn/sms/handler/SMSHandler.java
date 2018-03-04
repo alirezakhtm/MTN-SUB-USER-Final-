@@ -117,12 +117,16 @@ public class SMSHandler {
             sendSMSWebService.setHandlerResolver(new MTNHeaderHandlerResolver(smsqo.getMsisdn(), "spID", "serviceID"));
             SendSMSWebService service = sendSMSWebService.getSendSMSWebServicePort();
             service.sendSMS(smsqo.getMessage(), smsqo.getMsisdn());*/
+            System.out.println("[*] SendSMSHandler - sendSMS : Start sendSMS function.");
             db.open();
             ServicesObj myService = db.getService(smsqo);
             db.close();
             SendSmsService service = new SendSmsService();
+            System.out.println("[*] SendSMSHandler - sendSMS : SendSmsService have been created.");
             MTNHeaderHandlerResolver resolver = new MTNHeaderHandlerResolver(smsqo.getMsisdn(), myService.getSPID(), myService.getServiceID());
+            System.out.println("[*] SendSMSHandler - sendSMS : MTNHeaderHandlerResolver have been created.");
             service.setHandlerResolver(resolver);
+            System.out.println("[*] SendSMSHandler - sendSMS : resolver have been set.");
             com.mobtakeran.mtn.smsservice.SendSms port = service.getSendSms();
             // TODO initialize WS operation arguments here
             List<String> addresses =new ArrayList<String>();
@@ -131,14 +135,19 @@ public class SMSHandler {
             String senderName = myService.getPhoneNumber();
             ChargingInformation charging = null;
             SimpleReference receiptRequest =new SimpleReference();
+            System.out.println("[*] SendSMSHandler - sendSMS : SimpleRefrence have been created.");
             receiptRequest.setCorrelator(myService.getCorrelatorID());
+            System.out.println("[*] SendSMSHandler - sendSMS : correlator have been set.");
             receiptRequest.setEndpoint("http://localhost/GetSMS/SmsNotificationService");//10.130.158.140:8080
+            System.out.println("[*] SendSMSHandler - sendSMS : endpoint have been set.");
             receiptRequest.setInterfaceName("notifySmsDeliveryReceipt");
+            System.out.println("[*] SendSMSHandler - sendSMS : Interface have been set.");
             String encode = "";
             Integer sourceport = Integer.valueOf(0);
             Integer destinationport = Integer.valueOf(0);
             Integer esmClass = Integer.valueOf(0);
             Integer dataCoding = Integer.valueOf(0);
+            System.out.println("[*] SendSMSHandler - sendSMS : ready to send by port object.");
             String result = port.sendSms(addresses,
                     senderName,
                     charging,
