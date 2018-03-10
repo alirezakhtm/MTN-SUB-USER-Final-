@@ -138,7 +138,7 @@ public class SMSHandler {
             System.out.println("[*] SendSMSHandler - sendSMS : SimpleRefrence have been created.");
             receiptRequest.setCorrelator(myService.getCorrelatorID());
             System.out.println("[*] SendSMSHandler - sendSMS : correlator have been set.");
-            receiptRequest.setEndpoint("http://localhost/GetSMS/SmsNotificationService");//10.130.158.140:8080
+            receiptRequest.setEndpoint("http://79.175.133.145/GetSMS/SmsNotificationService");//10.130.158.140:8080
             System.out.println("[*] SendSMSHandler - sendSMS : endpoint have been set.");
             receiptRequest.setInterfaceName("notifySmsDeliveryReceipt");
             System.out.println("[*] SendSMSHandler - sendSMS : Interface have been set.");
