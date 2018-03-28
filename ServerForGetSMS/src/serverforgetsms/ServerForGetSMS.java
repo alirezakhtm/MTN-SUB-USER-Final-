@@ -40,8 +40,9 @@ public class ServerForGetSMS {
             while(true){
                 serverSocket.receive(datagramPacket);
                 byte[] dataRec = datagramPacket.getData();
-                String strData = new String(dataRec).replace((char)((byte)0x00), '*');
-                strData = strData.replaceAll("*", "");
+                String strData = new String(dataRec);//.replace((char)((byte)0x00), '*');
+                char ch = (char)((byte)0x00);
+                strData = strData.replaceAll(ch+"", "");
                 ActiveMQConnectionFactory connectionFactory = 
                         new ActiveMQConnectionFactory(
                                 db.getActiveMQUsername(),
@@ -69,6 +70,9 @@ public class ServerForGetSMS {
                     System.out.println("[*] " + 
                             new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()) +
                             " new SMS added to Received-SMS Queue.");
+                    System.out.println("[*] " + 
+                            new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()) +
+                            " Message added to Queue is : " + strData);
                 }catch(JMSException e){
                     System.out.println("[*] " + 
                             new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()) +

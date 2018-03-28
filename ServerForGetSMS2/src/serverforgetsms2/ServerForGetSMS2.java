@@ -39,8 +39,9 @@ public class ServerForGetSMS2 {
             while(true){
                 serverSocket.receive(datagramPacket);
                 byte[] dataRec = datagramPacket.getData();
-                String strData = new String(dataRec).replace((char)((byte)0x00), '*');
-                strData = strData.replaceAll("*", "");
+                String strData = new String(dataRec);//.replace((char)((byte)0x00), '*');
+                char ch = (char)((byte)0x00);
+                strData = strData.replaceAll(ch+"", "");
                 ActiveMQConnectionFactory connectionFactory = 
                         new ActiveMQConnectionFactory(
                                 db.getActiveMQUsername(),

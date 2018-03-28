@@ -12,6 +12,7 @@ import com.mtn.database.object.MOMTLogObj;
 import com.mtn.database.object.ServicesObj;
 import com.mtn.sms.object.DeliveryStatus;
 import com.mtn.sms.object.SMS;
+import com.mtn.sms.object.SMSQueueObj;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
@@ -22,10 +23,12 @@ import javax.jms.Destination;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageConsumer;
+import javax.jms.MessageProducer;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.ActiveMQQueueSession;
+import org.apache.camel.Produce;
 
 /**
  *
@@ -127,6 +130,9 @@ public class SMSParsing {
                     if (message instanceof TextMessage) { 
                         String msg = ((TextMessage) message).getText(); 
                         Gson gson = new GsonBuilder().create();
+                        System.out.println("[*] " + 
+                                new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()) +
+                                " - SMS Received from Queue: " + msg);
                         SMS sms = gson.fromJson(msg, SMS.class);
                         // logic for parsing SMS exist in Queue
                         // show message in consoul
@@ -149,6 +155,15 @@ public class SMSParsing {
                                 new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").
                                         format(Calendar.getInstance().getTime()));
                         db.saveMOMTLog(momtlo);
+                        // move to SendSMS-Queue
+                        String strMsg = "";
+                        if(!sms.getMessage().equals("L")){
+                            db.open();
+                            strMsg = db.getHelpMessage(iServiceCode);
+                            db.close();
+                            SMSQueueObj smsqo = new SMSQueueObj(sms.getSenderAddress().substring(2), strMsg, iServiceCode);
+                            InsertToQeueu(smsqo, "SendSMS-Queue", "SMSParsing - parsSMSReceived");
+                        }
                     } 
                 } else { 
                     break; 
@@ -235,6 +250,38 @@ public class SMSParsing {
                 } 
             } 
             bProcessCurrent_deliveryParsing = false;
+        }
+    }
+    
+    private void InsertToQeueu(Object obj, String queueName, String msg){
+        // create json string
+        Gson gson = new GsonBuilder().create();
+        String strJson = gson.toJson(obj, obj.getClass());
+        // save date on queue
+        ActiveMQConnectionFactory connectionFactory = 
+                new ActiveMQConnectionFactory(
+                        db.getActiveMQUsername(),
+                        db.getActiveMQPassword(),
+                        BROKER_URL);
+        Connection connection = null;
+        try{
+            connection = connectionFactory.createConnection();
+            connection.start();
+            Session session = connection.createSession(NON_TRANSACTED, Session.AUTO_ACKNOWLEDGE);
+            Destination destination = session.createQueue(queueName);
+            MessageProducer producer = session.createProducer(destination);
+            TextMessage message = session.createTextMessage(strJson);
+            producer.send(message);
+            producer.close();
+            session.close();
+            connection.close();
+            System.out.println("[*] " + 
+                    new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()) +
+                    " - " + msg + " : Moved to queue.");
+        }catch(JMSException e){
+            System.err.println("[*] " + 
+                    new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()) +
+                    " - " + msg + " : " + e);
         }
     }
 }

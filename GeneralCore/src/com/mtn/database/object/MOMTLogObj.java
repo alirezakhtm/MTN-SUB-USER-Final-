@@ -5,6 +5,9 @@
  */
 package com.mtn.database.object;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 /**
  *
  * @author alirezakhtm
@@ -66,5 +69,14 @@ public class MOMTLogObj {
     public void setRegisterationDate(String registerationDate) {
         this.registerationDate = registerationDate;
     }
+
+    @Override
+    public String toString() {
+        Gson gson = new GsonBuilder().create();
+        String str = gson.toJson(this, MOMTLogObj.class);
+        return str;
+    }
+    
+    
     
 }
