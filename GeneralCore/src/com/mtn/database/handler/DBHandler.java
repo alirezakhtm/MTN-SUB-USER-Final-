@@ -194,6 +194,9 @@ public class DBHandler {
      */
     public void saveMOMTLog(MOMTLogObj momtlo){
         try{
+            System.out.println("[*] " + 
+                    new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()) + " - " +
+                    momtlo.toString());
             String query = "INSERT INTO `mobtakerandb`.`tbl_mo_mt_log`\n" +
                             "(" +
                             "`serviceCode`,\n" +
@@ -211,7 +214,7 @@ public class DBHandler {
             stm = conn.createStatement();
             stm.execute(query);
         }catch(SQLException e){
-            System.err.println("DBHandler - saveMOMTLog : " + e.getSQLState());
+            System.err.println("DBHandler - saveMOMTLog : " + e);
         }
     }
     
@@ -390,5 +393,23 @@ public class DBHandler {
         }catch(SQLException e){
             System.err.println("DBHandler - saveConsumerCallLog : " + e);
         }
+    }
+    
+    /***************************************************************************
+     *          Message Handling for get Message from tbl_services             *
+     ***************************************************************************/
+    public String getHelpMessage(int serviceCode){
+        String strAns = "";
+        try{
+            String query = "SELECT * FROM `mobtakerandb`.`tbl_services` WHERE `serviceCode` = '" + serviceCode + "'";
+            stm = conn.createStatement();
+            rst = stm.executeQuery(query);
+            while(rst.next()){
+                strAns = rst.getString("helpMT");
+            }
+        }catch(SQLException e){
+            System.err.println("DBHandler - getHelpMessage : " + e);
+        }
+        return strAns;
     }
 }

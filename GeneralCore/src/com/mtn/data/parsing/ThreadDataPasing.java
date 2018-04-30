@@ -94,10 +94,10 @@ public class ThreadDataPasing implements Runnable {
                     }
                     // save data on database - tbl_mo_mt_log
                     MOMTLogObj momtlo = new MOMTLogObj(
-                            so.getServiceID(),
+                            so.getServiceCode()+"",
                             dataReceived.getUserID().substring(2),
-                            smsqo.getMessage(),
                             "null",
+                            smsqo.getMessage(),
                             new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").
                                     format(Calendar.getInstance().getTime()));
                     db.open();

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+    <admins>
+        <admin>
+            <correlator>mobreal</correlator>
+            <phone>9016132473</phone>
+            <reporttablename>tbl_report_maroufsho</reporttablename>
+            <servicecode>1</servicecode>
+        </admin>
+        <admin>
+            <correlator>mobdigidaro</correlator>
+            <phone>9016132473</phone>
+            <reporttablename>tbl_report</reporttablename>
+            <servicecode>2</servicecode>
+        </admin>
+    </admins>
+    <setting>
+        <sendtime>
+            <hour>15</hour>
+            <minute>5</minute>
+        </sendtime>
+    </setting>
+</root>
