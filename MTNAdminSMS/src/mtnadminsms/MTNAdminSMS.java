@@ -62,12 +62,12 @@ public class MTNAdminSMS {
                 Thread th_check_setting = new Thread(new Runnable() {
                     @Override
                     public void run() {
+                        Calendar cal = Calendar.getInstance();
+                        int iHour = Integer.parseInt(new SimpleDateFormat("HH").format(cal.getTime()));
+                        int iMinute = Integer.parseInt(new SimpleDateFormat("mm").format(cal.getTime()));
+                        int hourSetting = Integer.parseInt(xmlhandler.getSetting().getSendtime().getHour());
+                        int minuteSetting = Integer.parseInt(xmlhandler.getSetting().getSendtime().getMinute());
                         if(!bFelagStartLogic){
-                            Calendar cal = Calendar.getInstance();
-                            int iHour = Integer.parseInt(new SimpleDateFormat("HH").format(cal.getTime()));
-                            int iMinute = Integer.parseInt(new SimpleDateFormat("mm").format(cal.getTime()));
-                            int hourSetting = Integer.parseInt(xmlhandler.getSetting().getSendtime().getHour());
-                            int minuteSetting = Integer.parseInt(xmlhandler.getSetting().getSendtime().getMinute());
                             if(!bFelagMatchTime){
                                 if(hourSetting == iHour &&  minuteSetting == iMinute){
                                     bFelagMatchTime = true;
@@ -75,9 +75,9 @@ public class MTNAdminSMS {
                                     applicationLogic();
                                 }
                             }
-                            if(bFelagMatchTime && hourSetting == iHour && minuteSetting == iMinute + 1){
-                                bFelagMatchTime = false;
-                            }
+                        }
+                        if(bFelagMatchTime && hourSetting == iHour && minuteSetting == iMinute + 1){
+                            bFelagMatchTime = false;
                         }
                     }
                 });
