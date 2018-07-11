@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "DataSyncService", targetNamespace = "http://www.csapi.org/wsdl/parlayx/data/sync/v1_0/service", wsdlLocation = "file:/home/alireza/Projects/Company/NetBeanse/MTNSubUser/DataSyncWithPort/DataSync/src/conf/xml-resources/web-services/NewWebServiceFromWSDL/wsdl/sag_data_sync_service_1_0.wsdl")
+@WebServiceClient(name = "DataSyncService", targetNamespace = "http://www.csapi.org/wsdl/parlayx/data/sync/v1_0/service", wsdlLocation = "file:/home/alirzea/Projects/Company/NetBeanse/MTNSubUser/DataSyncWithPort/DataSync/src/conf/xml-resources/web-services/NewWebServiceFromWSDL/wsdl/sag_data_sync_service_1_0.wsdl")
 public class DataSyncService
     extends Service
 {
@@ -30,7 +30,7 @@ public class DataSyncService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("file:/home/alireza/Projects/Company/NetBeanse/MTNSubUser/DataSyncWithPort/DataSync/src/conf/xml-resources/web-services/NewWebServiceFromWSDL/wsdl/sag_data_sync_service_1_0.wsdl");
+            url = new URL("file:/home/alirzea/Projects/Company/NetBeanse/MTNSubUser/DataSyncWithPort/DataSync/src/conf/xml-resources/web-services/NewWebServiceFromWSDL/wsdl/sag_data_sync_service_1_0.wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

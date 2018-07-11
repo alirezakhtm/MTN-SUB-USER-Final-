@@ -11,6 +11,8 @@ import com.mtn.data.object.DataReceived;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import javax.jws.WebService;
 import org.csapi.schema.parlayx.data.v1_0.ProductDetail;
 import org.csapi.schema.parlayx.data.v1_0.UserID;
@@ -63,6 +65,7 @@ public class NewWebServiceFromWSDL {
                 /*resultDescription.value*/"null");
         Gson gson = new GsonBuilder().create();
         String strJson = gson.toJson(dataReceived, DataReceived.class);
+        System.out.println("[**] " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()) + " - " + strJson);
         byte[] buffer = strJson.getBytes();
         try{
             DatagramPacket datagramPacket = new DatagramPacket(
