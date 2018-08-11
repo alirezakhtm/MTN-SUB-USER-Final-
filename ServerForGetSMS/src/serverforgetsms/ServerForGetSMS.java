@@ -43,6 +43,7 @@ public class ServerForGetSMS {
                 String strData = new String(dataRec);//.replace((char)((byte)0x00), '*');
                 char ch = (char)((byte)0x00);
                 strData = strData.replaceAll(ch+"", "");
+                strData = editStringOfData(strData);
                 ActiveMQConnectionFactory connectionFactory = 
                         new ActiveMQConnectionFactory(
                                 db.getActiveMQUsername(),
@@ -84,6 +85,15 @@ public class ServerForGetSMS {
                     new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()) +
                     " >>> " + e);
         }
+    }
+
+    private static String editStringOfData(String strData) {
+        String[] str = strData.split("|");
+        while(strData.contains("}")){
+            strData = strData.substring(0, strData.lastIndexOf("}"));
+        }
+        strData += "}";
+        return strData;
     }
     
 }

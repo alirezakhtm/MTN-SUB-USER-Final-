@@ -55,8 +55,12 @@ public class ThreadDataPasing implements Runnable {
                     Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
                     Destination destination = session.createQueue("SendSMS-Queue");
                     MessageProducer producer = session.createProducer(destination);
+                    String msisdn = dataReceived.getUserID();
+                    if(msisdn.contains(":")){
+                        msisdn = msisdn.substring(0, msisdn.lastIndexOf(":") + 1);
+                    }
                     SMSQueueObj smsqo = new SMSQueueObj(
-                            dataReceived.getUserID().substring(2),
+                            msisdn,
                             dataReceived.getUpdateDesc().equals("Addition") 
                                     ? so.getWelcomeMT() : so.getCancelMT(),
                             so.getServiceCode()

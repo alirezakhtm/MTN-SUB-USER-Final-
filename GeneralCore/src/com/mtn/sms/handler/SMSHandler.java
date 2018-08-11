@@ -117,20 +117,25 @@ public class SMSHandler {
             sendSMSWebService.setHandlerResolver(new MTNHeaderHandlerResolver(smsqo.getMsisdn(), "spID", "serviceID"));
             SendSMSWebService service = sendSMSWebService.getSendSMSWebServicePort();
             service.sendSMS(smsqo.getMessage(), smsqo.getMsisdn());*/
+            String msisdn = smsqo.getMsisdn();
+            if(msisdn.contains(":")){
+                msisdn = msisdn.substring(msisdn.indexOf(":") + 1, msisdn.length() - 1);
+            }
             System.out.println("[*] SendSMSHandler - sendSMS : Start sendSMS function.");
             db.open();
             ServicesObj myService = db.getService(smsqo);
             db.close();
             SendSmsService service = new SendSmsService();
             System.out.println("[*] SendSMSHandler - sendSMS : SendSmsService have been created.");
-            MTNHeaderHandlerResolver resolver = new MTNHeaderHandlerResolver(smsqo.getMsisdn(), myService.getSPID(), myService.getServiceID());
+            MTNHeaderHandlerResolver resolver = new MTNHeaderHandlerResolver(msisdn, myService.getSPID(), myService.getServiceID());
             System.out.println("[*] SendSMSHandler - sendSMS : MTNHeaderHandlerResolver have been created.");
             service.setHandlerResolver(resolver);
             System.out.println("[*] SendSMSHandler - sendSMS : resolver have been set.");
             com.mobtakeran.mtn.smsservice.SendSms port = service.getSendSms();
             // TODO initialize WS operation arguments here
             List<String> addresses =new ArrayList<String>();
-            addresses.add("tel:"+smsqo.getMsisdn());
+            
+            addresses.add("tel:" + msisdn);
             
             String senderName = myService.getPhoneNumber();
             ChargingInformation charging = null;
@@ -138,7 +143,7 @@ public class SMSHandler {
             System.out.println("[*] SendSMSHandler - sendSMS : SimpleRefrence have been created.");
             receiptRequest.setCorrelator(myService.getCorrelatorID());
             System.out.println("[*] SendSMSHandler - sendSMS : correlator have been set.");
-            receiptRequest.setEndpoint("http://79.175.133.145/GetSMS/SmsNotificationService");//10.130.158.140:8080
+            receiptRequest.setEndpoint("http://79.175.151.33:80/GetSMS/SmsNotificationService");//10.130.158.140:8080
             System.out.println("[*] SendSMSHandler - sendSMS : endpoint have been set.");
             receiptRequest.setInterfaceName("notifySmsDeliveryReceipt");
             System.out.println("[*] SendSMSHandler - sendSMS : Interface have been set.");
@@ -161,7 +166,7 @@ public class SMSHandler {
             System.out.println("the result of send sms with wsdl is:" + result);
             // Save data on database tbl_mo_mt_log
             MOMTLogObj logObj = new MOMTLogObj(smsqo.getServiceCode()+"",
-                    smsqo.getMsisdn(),
+                    msisdn,
                     "",
                     smsqo.getMessage(),
                     new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").

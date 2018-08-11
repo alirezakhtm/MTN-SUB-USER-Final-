@@ -28,7 +28,6 @@ import javax.jms.Session;
 import javax.jms.TextMessage;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.ActiveMQQueueSession;
-import org.apache.camel.Produce;
 
 /**
  *
@@ -128,7 +127,8 @@ public class SMSParsing {
                 
                 if (message != null) { 
                     if (message instanceof TextMessage) { 
-                        String msg = ((TextMessage) message).getText(); 
+                        String msg = ((TextMessage) message).getText();
+                        msg = editStringOfData(msg);
                         Gson gson = new GsonBuilder().create();
                         System.out.println("[*] " + 
                                 new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()) +
@@ -161,7 +161,11 @@ public class SMSParsing {
                             db.open();
                             strMsg = db.getHelpMessage(iServiceCode);
                             db.close();
-                            SMSQueueObj smsqo = new SMSQueueObj(sms.getSenderAddress().substring(2), strMsg, iServiceCode);
+                            String msisdn = sms.getSenderAddress();
+                            if(msisdn.contains(":")){
+                                msisdn = msisdn.replace("tel:", "");
+                            }
+                            SMSQueueObj smsqo = new SMSQueueObj(msisdn, strMsg, iServiceCode);
                             InsertToQeueu(smsqo, "SendSMS-Queue", "SMSParsing - parsSMSReceived");
                         }
                     } 
@@ -283,5 +287,14 @@ public class SMSParsing {
                     new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()) +
                     " - " + msg + " : " + e);
         }
+    }
+    
+    
+    private String editStringOfData(String strData) {
+        while(strData.contains("}")){
+            strData = strData.substring(0, strData.lastIndexOf("}"));
+        }
+        strData += "}";
+        return strData;
     }
 }
