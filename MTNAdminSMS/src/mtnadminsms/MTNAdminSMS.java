@@ -98,6 +98,7 @@ public class MTNAdminSMS {
             );
             Gson gson = new GsonBuilder().create();
             String message = gson.toJson(smsObject, SMSQueueObj.class);
+            System.err.println("[*] INFO - JSON >>> " + message);
             pushToQueue("SendSMS-Queue", message);
         }
         bFelagStartLogic = false;
@@ -111,13 +112,14 @@ public class MTNAdminSMS {
         db.open();
         ReportTbl report = db.getReportObjectForSpecificDate(strCal, reportTableName);
         db.close();
-        String str = "Subject: " + title + "\n";
-        str += "Date:" + report.getDate() + "\n";
+        System.out.println("[*] Report >>> " + report.toString());
+        String str = "Subject: " + title + " ";
+        str += "Date:" + report.getDate() + " ";
         db.open();
-        str += "NewSub:"+ db.getNewSubUser(strCal, tagName) +"\n";
-        str += "NewUnSub:" + db.getNewUnSubUser(strCal, tagName) + "\n";
-        str += "T.S:" + db.getTotalSubUser(tagName) + "\n";
-        str += "A.U:" + db.getActiveUserNumber(tagName) + "\n";
+        str += "NewSub:"+ db.getNewSubUser(strCal, tagName) +" ";
+        str += "NewUnSub:" + db.getNewUnSubUser(strCal, tagName) + " ";
+        str += "T.S:" + db.getTotalSubUser(tagName) + " ";
+        str += "A.U:" + db.getActiveUserNumber(tagName) + " ";
         db.close();
         List<Integer> lstPrice = report.getLstPrice();
         List<Integer> lstSuccessful = report.getLstSuccess();

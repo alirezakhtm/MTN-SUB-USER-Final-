@@ -230,6 +230,7 @@ public class DBHandler {
             String query = "SELECT * FROM `"+this.dbName+"`.`" 
                     + reportTableName 
                     + "` WHERE `datePayment` like '%" + date + "%'";
+            System.out.println("[*] INFO - Query is >>> " + query);
             stm = conn.createStatement();
             rst = stm.executeQuery(query);
             while(rst.next()){

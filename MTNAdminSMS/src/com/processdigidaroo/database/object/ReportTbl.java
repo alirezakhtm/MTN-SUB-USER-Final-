@@ -82,7 +82,13 @@ public class ReportTbl {
     public void setDate(String date) {
         this.date = date;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return String.format("[Cash: %d, CustomerNumber: %d, Date: %s,"
+                + " SizeOfFaildList: %d, SizeOfPriceList: %d, SizeOfSuccessList: %d]"
+                , this.cash, this.customerNumber, this.date, this.lstFailed.size(),
+                this.lstPrice.size(), this.lstSuccess.size());
+    }
     
 }
