@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+    <database name="mobtakerandb" pass="" user="root"/>
+    <users>
+        <user password="admin" role="admin"></user>
+        <user password="user" role="simple">1</user>
+        <user password="amir" role="simple">2</user>
+    </users>
+</root>
